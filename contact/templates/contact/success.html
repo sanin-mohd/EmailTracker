@@ -4,5 +4,6 @@
 <div class="mx-auto my-4 text-center">
     <h1 class="fw-bolder text-success">Message Send</h1>
     <p class="my-5">You can send another in the <a href="{% url 'contact' %}">contact page</a></p>
+    <h5>User IP : {{request.session.ip}}</h5>
 </div>
 {% endblock %}

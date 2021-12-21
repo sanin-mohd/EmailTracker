@@ -30,4 +30,6 @@ def clicked(request):
         ip = request.META.get('REMOTE_ADDR')
     print("Link clicked")
     print(ip)
-    return HttpResponse("Hi")
+    request.session['ip']=ip
+    
+    return HttpResponse('<h1>Hello HttpResponse</h1>')
