@@ -1,4 +1,4 @@
-Python 3.10.0
+Python 3.9.9
 aiohttp==3.8.1
 aiosignal==1.2.0
 asgiref==3.4.1
