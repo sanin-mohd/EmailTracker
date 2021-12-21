@@ -6,7 +6,7 @@ from .forms import ContactForm
 from django.urls import reverse_lazy
 
 from django.http import HttpResponse
-from PIL import Image
+
 import pytracking
 # Create your views here.
 
@@ -42,9 +42,4 @@ def clicked(request):
 
 
 
-def image_load(request):
-    print("\nImage Loaded\n")
-    red = Image.new('RGB', (1, 1))
-    response = HttpResponse(content_type="image/png")
-    red.save(response, "PNG")
-    return response
+
