@@ -5,9 +5,15 @@ from django.views.generic import FormView, TemplateView
 from .forms import ContactForm
 from django.urls import reverse_lazy
 
+from django.http import HttpResponse
+from PIL import Image
+import pytracking
 # Create your views here.
 
 class ContactView(FormView):
+        
+
+    
     template_name = 'contact/contact.html'
     form_class = ContactForm
     success_url = reverse_lazy('success')
@@ -33,3 +39,12 @@ def clicked(request):
     request.session['ip']=ip
     
     return HttpResponse('<h1>Hello HttpResponse</h1>')
+
+
+
+def image_load(request):
+    print("\nImage Loaded\n")
+    red = Image.new('RGB', (1, 1))
+    response = HttpResponse(content_type="image/png")
+    red.save(response, "PNG")
+    return response
