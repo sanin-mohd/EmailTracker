@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.http import HttpResponse
 
 from django.views.generic import FormView, TemplateView
 from .forms import ContactForm
@@ -30,4 +30,4 @@ def clicked(request):
         ip = request.META.get('REMOTE_ADDR')
     print("Link clicked")
     print(ip)
-    pass
+    return HttpResponse("Hi")
