@@ -7,7 +7,6 @@ from django.urls import reverse_lazy
 
 from django.http import HttpResponse
 
-import pytracking
 # Create your views here.
 
 class ContactView(FormView):
