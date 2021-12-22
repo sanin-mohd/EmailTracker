@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-l39h2r*%y=jfx$t%fw0&j07cy^sk)!+*(w+(e=prfq0go+ma@d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1','3580-49-37-183-149.ngrok.io','134.209.158.201','emailtrackerrr.herokuapp.com']
+ALLOWED_HOSTS = ['localhost','127.0.0.1','0755-49-37-180-96.ngrok.io','134.209.158.201','emailtrackerrr.herokuapp.com']
 
 
 # Application definition
@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'contact',
     # 3rd party apps
     'crispy_forms',
+    'geoip2',
+
 
 
 ]
@@ -64,8 +66,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
     
 ]
+
 
 ROOT_URLCONF = 'EmailProject.urls'
 
@@ -123,7 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE =  'Asia/Kolkata'
 
 USE_I18N = True
 

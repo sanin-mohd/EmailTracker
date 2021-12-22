@@ -1,18 +1,21 @@
+
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from time import gmtime, strftime, timezone
 from django.views.generic import FormView, TemplateView
+import datetime
+from contact.models import EmailEventDatabase, Ip
 from .forms import ContactForm
 from django.urls import reverse_lazy
-
-from django.http import HttpResponse
-
+import pygeoip
+from django.conf import settings
+import ipinfo
 # Create your views here.
-
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+@method_decorator(csrf_exempt, name='dispatch')
 class ContactView(FormView):
-        
 
-    
     template_name = 'contact/contact.html'
     form_class = ContactForm
     success_url = reverse_lazy('success')
@@ -20,25 +23,49 @@ class ContactView(FormView):
     def form_valid(self, form):
         # Calls the custom send method
         form.send()
+        
         return super().form_valid(form)
 
 
 class ContactSuccessView(TemplateView):
     template_name = 'contact/success.html'
 
-def clicked(request):
+def track(request,event_id):
+    
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
 
     if x_forwarded_for:
         ip = x_forwarded_for.split(',')[0]
     else:
         ip = request.META.get('REMOTE_ADDR')
-    print("Link clicked")
-    print(ip)
-    request.session['ip']=ip
+    
+    try:
+        email_event=EmailEventDatabase.objects.get(id=event_id)
+        email_event.no_of_opening+=1
+        email_event.last_opening_time=datetime.datetime.today()
+        email_event.last_used_ip=ip
+        email_event.last_location='--'
+        email_event.save()
+        ip_details=Ip()
+        ip_details.email_event=email_event
+        ip_details.ip=ip
+        ip_details.save()
+        print(f'{email_event.email}')
+        print("Email Opened")
+        print(f'IP address :{ip}')
+        showtime = datetime.datetime.today()
+        print(f'Time :{showtime}')
+    except:
+        print("message not in database")
+        pass
+    # gi = pygeoip.GeoIP(GEOIP_DATABASE, pygeoip.GEOIP_STANDARD)
     
     return HttpResponse('<h1>Hello HttpResponse</h1>')
 
 
-
-
+def get_ip_details(ip_address=None):
+	ipinfo_token = getattr(settings, "IPINFO_TOKEN", None)
+	ipinfo_settings = getattr(settings, "IPINFO_SETTINGS", {})
+	ip_data = ipinfo.getHandler(ipinfo_token, **ipinfo_settings)
+	ip_data = ip_data.getDetails(ip_address)
+	return ip_data

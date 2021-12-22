@@ -7,6 +7,7 @@ from django.utils.html import strip_tags
 import smtplib
 
 from email.mime.text import MIMEText
+from contact.models import EmailEventDatabase, Ip
 
 
 
@@ -38,14 +39,19 @@ class ContactForm(forms.Form):
     def send(self):
 
         subject, msg ,to_email= self.get_info()
-
+        new_email=EmailEventDatabase()
+        new_email.email=to_email
+        new_email.no_of_opening=0
+        new_email.save()
+        
         send_mail(
             subject=subject,
             message=msg,
-            html_message = render_to_string('contact/mail_template.html',context={'message':msg}),
+            html_message = render_to_string('contact/mail_template.html',context={'message':msg,'email_event_id':new_email.id}),
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[to_email]
         )
+
         
 
 
