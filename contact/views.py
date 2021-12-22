@@ -63,9 +63,3 @@ def track(request,event_id):
     return HttpResponse('<h1>Hello HttpResponse</h1>')
 
 
-def get_ip_details(ip_address=None):
-	ipinfo_token = getattr(settings, "IPINFO_TOKEN", None)
-	ipinfo_settings = getattr(settings, "IPINFO_SETTINGS", {})
-	ip_data = ipinfo.getHandler(ipinfo_token, **ipinfo_settings)
-	ip_data = ip_data.getDetails(ip_address)
-	return ip_data
