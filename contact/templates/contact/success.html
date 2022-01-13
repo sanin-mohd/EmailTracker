@@ -4,7 +4,42 @@
 <div class="mx-auto my-4 text-center">
     <h1 class="fw-bolder text-success">Message Sent</h1>
     <p class="my-5">You can send another in the <a href="{% url 'contact' %}">contact page</a></p>
-
+    <div class="container">
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">SL</th>
+                <th scope="col">Message ID</th>
+                <th scope="col">Email ID</th>
+                <th scope="col">Sent Time</th>
+                <th scope="col">No Of Openings</th>
+                <th scope="col">Last Opened Time</th>
+                <th scope="col">Last Used IP</th>
+                <th scope="col">Last Location</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for data in datas %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{data.id}}</td>
+                <td>{{data.email}}</td>
+                <td>{{data.time}}</td>
+                <td>{{data.no_of_opening}}</td>
+                {% if data.no_of_opening != 0 %}
+                <td>{{data.last_opened_time}}</td>
+                {% else %}
+                <td>None</td>
+                {% endif %}
+                <td>{{data.last_used_ip}}</td>
+                <td>{{data.last_location}}</td>
+              </tr>
+             {% endfor %}
+            </tbody>
+          </table>
+          
+          
+    <div/>
     
 </div>
 {% endblock %}

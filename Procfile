@@ -1,1 +1,1 @@
-web: gunicorn EmailProject.wsgi --log-file -
+web: gunicorn EmailProject.wsgi

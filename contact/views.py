@@ -28,7 +28,13 @@ class ContactView(FormView):
 
 
 class ContactSuccessView(TemplateView):
+    
     template_name = 'contact/success.html'
+    def get_context_data(self, **kwargs):
+       context = super(ContactSuccessView, self).get_context_data(**kwargs)
+       # here's the difference:
+       context['datas'] = EmailEventDatabase.objects.all()
+       return context
 
 def track(request,event_id):
     

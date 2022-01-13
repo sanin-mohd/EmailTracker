@@ -31,9 +31,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-l39h2r*%y=jfx$t%fw0&j07cy^sk)!+*(w+(e=prfq0go+ma@d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1','0755-49-37-180-96.ngrok.io','134.209.158.201','emailtrackerrr.herokuapp.com']
+ALLOWED_HOSTS = ['localhost','127.0.0.1','emailtrackerrrrr.herokuapp.com/']
 
 
 # Application definition
