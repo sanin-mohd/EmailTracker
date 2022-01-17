@@ -68,4 +68,12 @@ def track(request,event_id):
     
     return HttpResponse('<h1>Hello HttpResponse</h1>')
 
+def link(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
 
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    print(f'User IP address : {ip}')
+    return HttpResponse("Thank you for sharing your location")

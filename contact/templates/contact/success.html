@@ -14,8 +14,8 @@
                 <th scope="col">Sent Time</th>
                 <th scope="col">No Of Openings</th>
                 <th scope="col">Last Opened Time</th>
-                <th scope="col">Last Used IP</th>
-                <th scope="col">Last Location</th>
+                <th scope="col">Last Used Google proxy</th>
+                
               </tr>
             </thead>
             <tbody>
@@ -25,14 +25,16 @@
                 <td>{{data.id}}</td>
                 <td>{{data.email}}</td>
                 <td>{{data.time}}</td>
+                {% if data.no_of_opening > 0 %}
                 <td>{{data.no_of_opening}}</td>
-                {% if data.no_of_opening != 0 %}
+                
                 <td>{{data.last_opened_time}}</td>
                 {% else %}
+                <td>0</td>
                 <td>None</td>
                 {% endif %}
                 <td>{{data.last_used_ip}}</td>
-                <td>{{data.last_location}}</td>
+                
               </tr>
              {% endfor %}
             </tbody>

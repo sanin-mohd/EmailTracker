@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-l39h2r*%y=jfx$t%fw0&j07cy^sk)!+*(w+(e=prfq0go+ma@d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1','https://emailtrackerrrrr.herokuapp.com/','*']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

@@ -9,5 +9,6 @@ urlpatterns = [
     path('', ContactView.as_view(), name="contact"),
     path('success/', ContactSuccessView.as_view(), name="success"),
     path('track/<str:event_id>',views.track,name='track'),
+    path('link',views.link,name='link'),
     
 ]

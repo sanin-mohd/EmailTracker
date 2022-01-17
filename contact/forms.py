@@ -41,7 +41,7 @@ class ContactForm(forms.Form):
         subject, msg ,to_email= self.get_info()
         new_email=EmailEventDatabase()
         new_email.email=to_email
-        new_email.no_of_opening=0
+        new_email.no_of_opening=-1
         new_email.save()
         
         send_mail(
